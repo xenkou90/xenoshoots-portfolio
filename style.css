@@ -1,0 +1,250 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* SPLIT SCREEN LAYOUT (50/50) */
+.split-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* LEFT SIDE */
+.left-side {
+    width: 50%;
+    background-color: #545454;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* top, bio, bottom */
+    padding: 60px 50px;
+    color: #ffffff;
+}
+
+/* --- Top & Bottom Menus */
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* tight spacing */
+}
+
+.side-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: capitalize; /* Style B */
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Elegant Slide Hover */
+.side-nav a:hover {
+    padding-left: 8px;
+}
+
+.side-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.side-nav a:hover::after {
+    width: 100%;
+}
+
+/* --- BIO TEXT --- */
+.bio {
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    padding: 40px 0;
+}
+
+.bio p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* RIGHT SIDE */
+.right-side {
+    width: 50%;
+    position: relative;
+    overflow: hidden; /* hero image for index.html */
+}
+
+/* Hero image on index.html */
+.hero-image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.right-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.right-side img:hover {
+    transform: scale(1.03); /* subtle zoom for hero image */
+}
+
+/* Custom scrollbar for gallery */
+.gallery-right::-webkit-scrollbar {
+    width: 10px;
+}
+
+.gallery-right::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.gallery-right::-webkit-scrollbar-thumb {
+    background: #545454;
+    border-radius: 5px;
+}
+
+.gallery-right::-webkit-scrollbar-thumb:hover {
+    background: #6a6a6a;
+}
+
+/* GALLERY PAGE SPECIFIC */
+.gallery-right {
+    width: 50%;
+    overflow-y: auto; /* vertical scroll for gallery */
+    padding: 40px; /* padding around gallery */
+    background-color: #000; /* dark background */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-auto-rows: 300px; /* uniform row height */
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.05);
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover::before {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ADJUST GRID FOR SMALLER CONTENT AREA */
+@media (max-width: 1400px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+/* LIGHTBOX */
+
+/* LIGHTBOX (hidden by default, visible when .open is added) */
+.lightbox {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms ease, visibility 300ms ease;
+    display: block; /* always present so transitions work; visibility controls showing */
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.98);
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    pointer-events: none; /* prevents right-click on image */
+    user-select: none; /* prevents selection */
+    -webkit-user-drag: none; /* prevents dragging */
+    opacity: 0;
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.lightbox.open .lightbox-content.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #ffffff;
+    font-size: 50px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1001;
+}
+
+.lightbox-close:hover {
+    color: #cccccc;
+}
+
+/* CREDIT SECTION */
+.credit {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: left;
+    margin-top: 20px;
+}
