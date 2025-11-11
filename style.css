@@ -369,6 +369,132 @@ body {
 }
 
 /* ============================
+   MOBILE HEADER & HAMBUGER MENU
+   ============================ */
+
+   /* Mobile header - hidden on desktop, visible on mobile */
+   .mobile-header {
+    display:none; /* hidden by default */
+    background-color: #545454;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    align-items: center;
+    justify-content: space-between;
+   }
+
+   /* Hamburger button */
+   .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 901;
+   }
+
+   .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+   }
+
+   /* Hamburger animation when active */
+   .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+   }
+
+   .hamburger.active span:nth-child(2) {
+    opacity: 0;
+   }
+
+   .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+   }
+
+   /* Mobile credit text in header */
+   .mobile-credit {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: right;
+    flex-grow: 1;
+   }
+
+   .mobile-credit p {
+    margin: 0;
+   }
+
+   /* Mobile Navigation Overlay */
+   .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #545454;
+    z-index: 1500;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+   }
+
+   .mobile-nav.open {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+   }
+
+   /* Close button inside mobile nav */
+   .mobile-nav-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 1501;
+   }
+
+   /* Mobile nav content */
+   .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+   }
+
+   .mobile-nav-content a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;;
+   }
+
+   .mobile-nav-content a:hover {
+    letter-spacing: 3px;
+   }
+
+/* ============================
    MOBILE RESPONSIVE STYLE
    ============================ */
 
