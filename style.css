@@ -500,6 +500,29 @@ body {
 
    /* Tablets and below 1024px */
    @media (max-width: 1024px) {
+    .mobile-header {
+        display: flex; /* show mobile header */
+    }
+   }
+
+   /* Add padding to body to account for fixed header */
+   body {
+    padding-top: 55px;
+   }
+
+   /* Hide desktop left-side navigation */
+   .left-side .side-nav {
+    display: none;
+   }
+
+   /* Keep bio and bottom credit on left side of tablet */
+   .left-side {
+    width: 100%;
+    height: auto;
+    padding: 40px 30px;
+   }
+
+   @media (max-width: 1024px) {
     .split-container {
         flex-direction: column; /* Stack vertically */
         height: auto;
@@ -531,6 +554,18 @@ body {
    }
 
    /* Mobile phones 768px and below */
+   @media (max-width: 768px) {
+    /* Hide the entire left side on mobile */
+    .left-side {
+        display: none;
+    }
+
+    /* Make right side full width */
+    .right-side {
+        width: 100%;
+    }
+   }
+
    @media (max-width: 768px) {
     body {
         overflow-y: auto; /* enable vertical scroll on body */
