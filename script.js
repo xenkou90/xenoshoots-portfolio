@@ -88,3 +88,45 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
     });
 });
+
+// CONTACT MODAL FUNCTIONALITY
+document.addEventListener('DOMContentLoaded', () => {
+    const contactModal = document.getElementById('contact-modal');
+    const contactTriggers = document.querySelectorAll('a[href="#contact"]');
+    const contactClose = document.querySelector('.contact-close');
+
+    if (!contactModal) return;
+
+    // Open modal when clicking Contact link
+    contactTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close modal when clicking X
+    if (contactClose) {
+        contactClose.addEventListener('click', () => {
+            contactModal.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close modal when clicking outside the content
+    contactModal.addEventListener('click', function(e) {
+        if (e.target === contactModal) {
+            contactModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && contactModal.classList.contains('open')) {
+            contactModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+});
