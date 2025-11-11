@@ -4,112 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xeno Shoots</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon" /> 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-<body>
-    <!-- MOBILE HEADER + NAV (hamburger) -->
-    <div class="mobile-header">
-        <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="mobile-credit"><p>Imagined, Created, Designed by Xeno</p></div>
-    </div>
 
-    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-        <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
-        <nav class="mobile-nav-content">
-            <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="journal.html">Journal</a>
-            <a href="https://www.instagram.com/xeno.shoots" target="_blank">Instagram</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-    <!-- Mobile Header (only visible on mobile) -->
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- MOBILE HEADER + NAV (hamburger) -->
     <header class="mobile-header">
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="mobile-credit">
-            <p>Imagined, Created, Designed by Xeno</p>
-        </div>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-credit">
+        <p>Imagined, Created, Designed by Xeno</p>
+      </div>
     </header>
 
-    <!-- Mobile Navigation Overlay -->
-    <nav class="mobile-nav" id="mobile-nav">
-        <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
-        <div class="mobile-nav-content">
-            <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="journal.html">Journal</a>
-            <a href="https://www.instagram.com/xeno.shoots" target="blank">Instagram</a>
-            <a href="#contact">Contact</a>
-        </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
+      <div class="mobile-nav-content">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="journal.html">Journal</a>
+        <a href="https://www.instagram.com/xeno.shoots" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
 
+    <!-- SPLIT SCREEN CONTAINER -->
+    <main class="split-container">
+      <!-- LEFT SIDE -->
+      <aside class="left-side">
+        <nav class="side-nav top-menu">
+          <a href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="journal.html">Journal</a>
+        </nav>
 
-    <!-- Split Screen Container -->
-    <div class="split-container">
-        <!--Left Side (GREY)-->
-        <div class="left-side">
-            <!-- TOP MENU -->
-            <nav class="side-nav top-menu">
-                <a href="index.html">Home</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="journal.html">Journal</a>
-            </nav>
-
-            <!-- Middle BIO -->
-            <div class="bio">
-                <p> Xeno is a product photographer specializing in creative commercial photography and brand storytelling.</p>
-            </div>
-
-            <!-- BOTTOM MENU -->
-            <nav class="side-nav bottom-menu">
-                <a href="https://www.instagram.com/xeno.shoots" target="_blank">Instagram</a>
-                <a href="#contact">Contact</a>
-            </nav>
-
-            <!-- DESIGNED BY -->
-            <div class="credit">
-                <p>Imagined, Created, Designed by Xeno</p>
-            </div>
+        <div class="bio">
+          <p>Xeno is a product photographer specializing in creative commercial photography and brand storytelling.</p>
         </div>
 
-        <!-- Right Side (PHOTO) -->
-        <div class="right-side">
-            <a href="gallery.html" class="hero-image-link">
-                <img src="photos/Device-VEEPON-TITA-X2-6-IG.jpg" alt="Featured Work">
-            </a>
+        <nav class="side-nav bottom-menu">
+          <a href="https://www.instagram.com/xeno.shoots" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="credit">
+          <p>Imagined, Created, Designed by Xeno</p>
         </div>
-    </div>
+      </aside>
+
+      <!-- RIGHT SIDE -->
+      <section class="right-side">
+        <a href="gallery.html" class="hero-image-link">
+          <img src="photos/Device-VEEPON-TITA-X2-6-IG.jpg" alt="Featured Work" />
+        </a>
+      </section>
+    </main>
 
     <!-- CONTACT MODAL -->
-    <div id="contact-modal" class="contact-modal">
-        <div class="contact-content">
-            <span class="contact-close">&times;</span>
+    <div id="contact-modal" class="contact-modal" aria-hidden="true">
+      <div class="contact-content">
+        <button class="contact-close" aria-label="Close contact form">&times;</button>
 
-            <div class="contact-text-top">
-                <p>If you need to contact me, it is preferred to send me an email.</p>
-            </div>
-
-            <div class="contact-image">
-                <img src="logo.jpg" alt="Contact Icon">
-            </div>
-
-            <div class="contact-text-bottom">
-                <p class="email-display">Email me at: <strong>xeno.shoots1@gmail.com</strong></p>
-                <p class="email-instruction">or press the button below to open your mail app</p>
-                <a href="mailto:xeno.shoots1@gmail.com" class="email-button">Send me an Email</a>
-            </div>
+        <div class="contact-text-top">
+          <p>If you need to contact me, it is preferred to send me an email.</p>
         </div>
+
+        <div class="contact-image">
+          <img src="logo.jpg" alt="Contact Icon" />
+        </div>
+
+        <div class="contact-text-bottom">
+          <p class="email-display">Email me at: <strong>xeno.shoots1@gmail.com</strong></p>
+          <p class="email-instruction">or press the button below to open your mail app</p>
+          <a href="mailto:xeno.shoots1@gmail.com" class="email-button">Send me an Email</a>
+        </div>
+      </div>
     </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
