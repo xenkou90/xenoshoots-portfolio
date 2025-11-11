@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
 <body>
+    <!-- MOBILE HEADER + NAV (hamburger) -->
+    <div class="mobile-header">
+        <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-credit"><p>Imagined, Created, Designed by Xeno</p></div>
+    </div>
+
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        <nav class="mobile-nav-content">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="journal.html">Journal</a>
+            <a href="https://www.instagram.com/xeno.shoots" target="_blank">Instagram</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
     <!-- Mobile Header (only visible on mobile) -->
     <header class="mobile-header">
         <button class="hamburger" id="hamburger">

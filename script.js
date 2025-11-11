@@ -133,44 +133,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // MOBILE HAMBURGER MENU TOGGLE
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger');
+    const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-content a');
 
     if (!hamburger || !mobileNav) return;
 
-    // Open mobile nav
-    hamburger.addEventListener('Click', () => {
+    // Toggle mobile nav open/close
+    function openMobileNav() {
         mobileNav.classList.add('open');
         hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileNav.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+        if (mobileNav.classList.contains('open')) {
+            closeMobileNav();
+        } else {
+            openMobileNav();
+        }
     });
 
     // Close mobile nav with close button
     if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        mobileNavClose.addEventListener('click', closeMobileNav);
     }
 
-    // Close mobile nav when clicking a link
+    // Close mobile nav when clicking a link inside it
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
+            // let contact link behavior run (contact modal) then close nav
+            setTimeout(closeMobileNav, 50);
         });
     });
 
     // Close mobile nav with ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
+            closeMobileNav();
         }
     });
 });
