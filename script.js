@@ -130,3 +130,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// MOBILE HAMBURGER MENU TOGGLE
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-content a');
+
+    if (!hamburger || !mobileNav) return;
+
+    // Open mobile nav
+    hamburger.addEventListener('Click', () => {
+        mobileNav.classList.add('open');
+        hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Close mobile nav with close button
+    if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close mobile nav when clicking a link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close mobile nav with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
