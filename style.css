@@ -504,30 +504,10 @@ body {
    ============================ */
 
 /* Tablets and below 1024px */
-@media (max-width: 1024px) {
-    .mobile-header {
-        display: flex; /* show mobile header */
-    }
-
-    /* Add padding to body to account for fixed header on tablet/mobile */
-    body {
-        padding-top: 55px;
-    }
-
-    /* Hide desktop left-side navigation on tablet/mobile */
-    .left-side .side-nav {
-        display: none;
-    }
-}
-
-   /* Keep bio and bottom credit on left side of tablet */
-    /* (moved into media query below) */
-
    @media (max-width: 1024px) {
     .split-container {
         flex-direction: column; /* Stack vertically */
         height: auto;
-        overflow-y: auto;
     }
 
     .left-side {
@@ -556,9 +536,95 @@ body {
 
    /* Mobile phones 768px and below */
    @media (max-width: 768px) {
-    /* Hide the entire left side on mobile */
+    /* Show mobile header and footer */
+    .mobile-header {
+        display: block;
+    }
+
+    .mobile-footer {
+        display: block;
+    }
+
+    /* Hide desktop left side completely */
     .left-side {
         display: none;
+    }
+
+    /* Body adjustments for fixed header/footer */
+    body {
+        overflow: hidden; /* Default: no scrolling on index */
+        height: 100vh;
+        padding-top: 55px; /* Height of header */
+        padding-bottom: 45px; /* Height of footer */
+    }
+
+    /* Right side fills available space */
+    .right-side {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Hero image fills screen on index.html */
+    .hero-image-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .right-side img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Gallery page specific - allow scrolling */
+    .gallery-right {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto; /* enable vertical scroll on gallery */
+        padding: 20px;
+        background-color: #000; /* dark background */
+    }
+
+    /* Gallery - single column */
+    .gallery-grid {
+        grid-template-columns: 1fr; /* single column on mobile */
+        grid-auto-rows: 250px;
+        gap: 15px;
+    }
+
+    /* Lightbox adjustments */
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 40px;
+    }
+
+    /* Contact modal */
+    .contact-content {
+        padding: 40px 30px;
+        width: 95%;
+    }
+
+    .contact-close {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+    }
+
+    .contact-text-top p {
+        font-size: 14px;
+    }
+
+    .email-button {
+        padding: 12px 30px;
+        font-size: 12px;
     }
 
     /* Make right side full width */
@@ -638,30 +704,33 @@ body {
         padding: 12px 30px;
         font-size: 12px;
     }
-   }
 
    /* Extra small phones 480px and below */
    @media (max-width: 480px) {
-    .left-side {
-        padding: 25px 15px;
+    body {
+        padding-top: 50px;
+        padding-bottom: 40px;
     }
 
-    .side-nav {
-        gap: 15px;
-    }
-    
-    .side-nav a {
-        font-size: 18px;
+    .mobile-header {
+        padding: 12px 15px;
     }
 
-    .bio p {
-        font-size: 14px;
-        line-height: 1.6;
+    .mobile-footer {
+        padding: 12px 15px;
+    }
+
+    .mobile-footer p {
+        font-size: 9px;
     }
 
     .gallery-grid {
         grid-auto-rows: 200px;
         gap: 10px;
+    }
+
+    .gallery-right {
+        padding: 15px;
     }
 
     .contact-content {
