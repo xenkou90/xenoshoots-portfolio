@@ -641,11 +641,6 @@ body {
 
    /* Extra small phones 480px and below */
    @media (max-width: 480px) {
-    body {
-        padding-top: 50px;
-        padding-bottom: 40px;
-    }
-
     .mobile-header {
         padding: 12px 15px;
     }
