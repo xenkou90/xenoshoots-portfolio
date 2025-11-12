@@ -22,6 +22,18 @@ body {
     height: 100vh;
 }
 
+/* Text on header */
+.header-credit {
+    font-family: "Cormorant Garamond", sans;
+    font-size: 0.65rem;
+    text-align: right;
+    margin-right: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    right: 0.1rem;
+    top: 1.3rem;
+}
+
 /* LEFT SIDE */
 .left-side {
     width: 50%;
@@ -184,7 +196,7 @@ body {
     }
 }
 
-/* LIGHTBOX (hidden by default, visible when .open is added) */
+/* LIGHTBOX */
 .lightbox {
     position: fixed;
     z-index: 1000;
@@ -197,7 +209,6 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 300ms ease, visibility 300ms ease;
-    display: block; /* always present so transitions work; visibility controls showing */
 }
 
 .lightbox.open {
@@ -213,9 +224,8 @@ body {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    pointer-events: none; /* prevents right-click on image */
-    user-select: none; /* prevents selection */
-    -webkit-user-drag: none; /* prevents dragging */
+    pointer-events: none;
+    user-select: none;
     opacity: 0;
     transition: opacity 300ms ease, transform 300ms ease;
 }
@@ -367,25 +377,23 @@ body {
 
 .email-button:hover {
     background-color: #ffffff;
-    color: #0000000;
+    color: #000000;
 }
 
 /* ============================
-   MOBILE HEADER & HAMBUGER MENU
+   MOBILE HEADER & HAMBURGER MENU
    ============================ */
 
-   /* Mobile header - hidden on desktop, visible on mobile */
-   .mobile-header {
-    display:none; /* hidden by default */
+.mobile-header {
+    display: none;
     background-color: #545454;
     padding: 15px 20px;
     width: 100%;
     z-index: 900;
-    flex-shrink: 0; 
-   }
+    flex-shrink: 0;
+}
 
-   /* Hamburger button */
-   .hamburger {
+.hamburger {
     background: none;
     border: none;
     cursor: pointer;
@@ -394,31 +402,29 @@ body {
     flex-direction: column;
     gap: 5px;
     z-index: 901;
-   }
+}
 
-   .hamburger span {
+.hamburger span {
     display: block;
     width: 25px;
     height: 3px;
     background-color: #ffffff;
     transition: all 0.3s ease;
-   }
+}
 
-   /* Hamburger animation when active */
-   .hamburger.active span:nth-child(1) {
+.hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(7px, 7px);
-   }
+}
 
-   .hamburger.active span:nth-child(2) {
+.hamburger.active span:nth-child(2) {
     opacity: 0;
-   }
+}
 
-   .hamburger.active span:nth-child(3) {
+.hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
-   }
+}
 
-   /* Mobile Navigation Overlay */
-   .mobile-nav {
+.mobile-nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -430,16 +436,15 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-   }
+}
 
-   .mobile-nav.open {
+.mobile-nav.open {
     display: flex;
     opacity: 1;
     visibility: visible;
-   }
+}
 
-   /* Close button inside mobile nav */
-   .mobile-nav-close {
+.mobile-nav-close {
     position: absolute;
     top: 15px;
     right: 20px;
@@ -450,10 +455,9 @@ body {
     font-weight: 300;
     cursor: pointer;
     z-index: 1501;
-   }
+}
 
-   /* Mobile nav content */
-   .mobile-nav-content {
+.mobile-nav-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -461,9 +465,9 @@ body {
     width: 100%;
     height: 100%;
     gap: 30px;
-   }
+}
 
-   .mobile-nav-content a {
+.mobile-nav-content a {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 400;
@@ -471,40 +475,20 @@ body {
     text-decoration: none;
     text-transform: capitalize;
     letter-spacing: 1px;
-    transition: all 0.3s ease;;
-   }
+    transition: all 0.3s ease;
+}
 
-   .mobile-nav-content a:hover {
+.mobile-nav-content a:hover {
     letter-spacing: 3px;
-   }
-
-   /* Mobile footer - hidden on desktop, visible on mobile */
-   .mobile-footer {
-    display: none; /* hidden by default */
-    background-color: #545454;
-    padding: 15px 20px;
-    width: 100%;
-    z-index: 900;
-    flex-shrink: 0;
-   }
-
-   .mobile-footer p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 10px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
-    text-align: right;
-    margin: 0;
-   }
+}
 
 /* ============================
    MOBILE RESPONSIVE STYLE
    ============================ */
 
-/* Tablets and below 1024px */
-   @media (max-width: 1024px) {
+@media (max-width: 1024px) {
     .split-container {
-        flex-direction: column; /* Stack vertically */
+        flex-direction: column;
         height: auto;
     }
 
@@ -516,7 +500,7 @@ body {
 
     .right-side {
         width: 100%;
-        height: 70vh; /* Fixed height for hero/gallery */
+        height: 70vh;
         min-height: 500px;
     }
 
@@ -527,43 +511,33 @@ body {
     }
 
     .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-   }
+}
 
-   /* Mobile phones 768px and below */
-   @media (max-width: 768px) {
-    /* Show mobile header and footer */
+@media (max-width: 768px) {
     .mobile-header {
         display: block;
     }
 
-    .mobile-footer {
-        display: block;
-    }
-
-    /* Hide desktop left side completely */
     .left-side {
         display: none;
     }
 
-    /* Body structure: header + content + footer */
     body {
         height: 100vh;
-        overflow: hidden; /* Default: no scrolling on index */
+        overflow: hidden;
         display: flex;
         flex-direction: column;
     }
 
-    /* Split container fill remaining space */
     .split-container {
         flex: 1;
         overflow: hidden;
         display: flex;
     }
 
-    /* Right side fills available space */
     .right-side {
         width: 100%;
         height: 100%;
@@ -571,7 +545,6 @@ body {
         position: relative;
     }
 
-    /* Hero image fills screen on index.html */
     .hero-image-link {
         display: block;
         width: 100%;
@@ -588,24 +561,21 @@ body {
         display: block;
     }
 
-    /* Gallery page specific - allow scrolling */
     .gallery-right {
         width: 100%;
         height: 100%;
-        overflow-y: auto; /* enable vertical scroll on gallery */
+        overflow-y: auto;
         overflow-x: hidden;
         padding: 20px;
-        background-color: #000; /* dark background */
+        background-color: #000;
     }
 
-    /* Gallery - single column */
     .gallery-grid {
-        grid-template-columns: 1fr; /* single column on mobile */
+        grid-template-columns: 1fr;
         grid-auto-rows: 250px;
         gap: 15px;
     }
 
-    /* Lightbox adjustments */
     .lightbox-content {
         max-width: 95%;
         max-height: 80%;
@@ -617,7 +587,6 @@ body {
         font-size: 40px;
     }
 
-    /* Contact modal */
     .contact-content {
         padding: 40px 30px;
         width: 95%;
@@ -637,20 +606,10 @@ body {
         padding: 12px 30px;
         font-size: 12px;
     }
-   }
+}
 
-   /* Extra small phones 480px and below */
-   @media (max-width: 480px) {
+@media (max-width: 480px) {
     .mobile-header {
         padding: 12px 15px;
     }
-
-    .mobile-footer {
-        padding: 12px 15px;
-    }
-
-    .mobile-footer p {
-        font-size: 9px;
-    }
-    
-   }
+}
