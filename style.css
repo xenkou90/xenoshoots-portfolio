@@ -54,7 +54,7 @@ body {
 
 .side-nav a {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 400;
     text-transform: capitalize; /* Style B */
     color: #ffffff;
@@ -93,7 +93,7 @@ body {
 }
 
 .bio p {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 1.8;
 }
