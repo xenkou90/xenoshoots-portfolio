@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap (add after we generate it in step 2)
+Sitemap: https://xenoshoots.com/sitemap.xml
