@@ -131,6 +131,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// LAZY LOADING FADE-IN EFFECT
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+    lazyImages.forEach(img => {
+        img.addEventListener('load', function() {
+            this.classList.add('loaded');
+        });
+
+        // If image is already cached and loaded
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
+    });
+});
+
 // MOBILE HAMBURGER MENU TOGGLE
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
