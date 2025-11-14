@@ -607,3 +607,20 @@ body {
         font-size: 1.9rem;
     }
 }
+
+/* =========================================
+   DISABLE RIGHT-CLICK ON HERO IMAGE
+   By placing a transparent layer over the image, 
+   so the user can’t right-click or drag it.
+========================================= */
+.hero-image-link {
+    position: relative;
+}
+
+.hero-image-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    cursor: default;
+}
