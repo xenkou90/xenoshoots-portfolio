@@ -1,203 +1,195 @@
-// LIGHTBOX FUNCTIONALITY
-// Wrap initialization in DOMContentLoaded so elements exist before we bind handlers.
-document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const closeBtn = document.querySelector('.lightbox-close');
 
-    // If the basic elements aren't present, stop silently.
-    if (!lightbox || !lightboxImg) return;
+document.addEventListener("DOMContentLoaded", () => {
+/* ==========================================================
+   LIGHTBOX FUNCTIONALITY
+========================================================== */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const galleryItems = document.querySelectorAll(".gallery-item");
+const lightboxClose = document.querySelector(".lightbox-close");
 
-    // Prepare an array of image sources and track the current index
-    const galleryArray = Array.from(galleryItems);
-    const images = galleryArray.map(item => item.dataset?.image || item.getAttribute('data-image') || item.querySelector('img')?.src).filter(Boolean);
-    let currentIndex = -1;
+let currentIndex = -1;
+const images = [...galleryItems].map(item =>
+    item.dataset.image || item.querySelector("img")?.src
+).filter(Boolean);
 
-    // helper to show image at index with fade
-    function showImageAt(index) {
-        if (index < 0 || index >= images.length) return;
-        currentIndex = index;
-        // remove visible class to start fade-out (if any)
-        lightboxImg.classList.remove('visible');
-        // set src, then add visible on load to fade-in
-        lightboxImg.onload = () => {
-            // small timeout to ensure transition applies
-            requestAnimationFrame(() => lightboxImg.classList.add('visible'));
-        };
-        lightboxImg.src = images[currentIndex];
-    }
+function showImageAt(index) {
+    if (!lightboxImg || !images.length) return;
 
-    function openLightboxAt(index) {
-        showImageAt(index);
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden'; // prevent scrolling
-    }
+    currentIndex = index;
+    lightboxImg.classList.remove("visible");
 
-    function closeLightbox() {
-        lightbox.classList.remove('open');
-        document.body.style.overflow = '';
-    }
+    lightboxImg.onload = () => {
+        requestAnimationFrame(() => lightboxImg.classList.add("visible"));
+    };
 
-    // OPEN LIGHTBOX WHEN CLICKING A GALLERY ITEM
-    galleryArray.forEach((item, idx) => {
-        item.addEventListener('click', function (e) {
-            e.preventDefault();
-            if (!images[idx]) return;
-            openLightboxAt(idx);
-        });
-    });
+    lightboxImg.src = images[currentIndex];
+}
 
-    // CLOSE LIGHTBOX WHEN CLICKING THE CLOSE BUTTON (if it exists)
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            closeLightbox();
-        });
-    }
+function openLightbox(index) {
+    if (!lightbox) return;
 
-    // CLOSE LIGHTBOX WHEN CLICKING OUTSIDE THE IMAGE
-    lightbox.addEventListener('click', function (e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
+    showImageAt(index);
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
 
-    // CLOSE LIGHTBOX WITH ESC KEY
-    // Keyboard support: Escape to close, ArrowLeft/ArrowRight to navigate
-    document.addEventListener('keydown', function (e) {
-        if (!lightbox.classList.contains('open')) return;
-        if (e.key === 'Escape') {
-            closeLightbox();
-            return;
-        }
-        if (e.key === 'ArrowLeft') {
-            // previous
-            const prev = (currentIndex - 1 + images.length) % images.length;
-            showImageAt(prev);
-            return;
-        }
-        if (e.key === 'ArrowRight') {
-            const next = (currentIndex + 1) % images.length;
-            showImageAt(next);
-            return;
-        }
-    });
+function closeLightbox() {
+    if (!lightbox) return;
 
-    // DISABLE RIGHT-CLICK ON LIGHTBOX IMAGE
-    lightboxImg.addEventListener('contextmenu', function (e) {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
+
+// OPEN LIGHTBOX WHEN CLICKING A GALLERY ITEM
+galleryItems.forEach((item, i) => {
+    item.addEventListener("click", e => {
         e.preventDefault();
+        openLightbox(i);
     });
 });
 
+// CLOSE LIGHTBOX WHEN CLICKING THE CLOSE BUTTON (if it exists)
+if (lightboxClose) {
+    lightboxClose.addEventListener("click", closeLightbox);
+}
+
+// CLOSE LIGHTBOX WHEN CLICKING OUTSIDE THE IMAGE
+if (lightbox) {
+    lightbox.addEventListener("click", e => {
+        if (e.target === lightbox) closeLightbox();
+    });
+}
+
+// CLOSE LIGHTBOX WITH ESC KEY & ArrowLeft/ArrowRight to navigate
+document.addEventListener("keydown", e => {
+    if (!lightbox?.classList.contains("open")) return;
+
+    if (e.key === "Escape") return closeLightbox();
+    if (e.key === "ArrowLeft")
+        return showImageAt((currentIndex - 1 + images.length) % images.length);
+    if (e.key === "ArrowRight")
+        return showImageAt((currentIndex + 1) % images.length);
+});
+
+// DISABLE RIGHT-CLICK ON LIGHTBOX IMAGE
+if (lightboxImg) {
+    lightboxImg.addEventListener("contextmenu", e => e.preventDefault());
+}
+
+
+/* ==========================================================
+   CONTACT MODAL
+========================================================== */
 // CONTACT MODAL FUNCTIONALITY
-document.addEventListener('DOMContentLoaded', () => {
-    const contactModal = document.getElementById('contact-modal');
-    const contactTriggers = document.querySelectorAll('a[href="#contact"]');
-    const contactClose = document.querySelector('.contact-close');
+const contactModal = document.getElementById("contact-modal");
+const contactLinks = document.querySelectorAll('a[href="#contact"]');
+const contactClose = document.querySelector(".contact-close");
 
+// Open modal when clicking Contact link
+function openContact() {
     if (!contactModal) return;
+    contactModal.classList.add("open");
+    contactModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
 
-    // Open modal when clicking Contact link
-    contactTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            contactModal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        });
-    });
+function closeContact() {
+    if (!contactModal) return;
+    contactModal.classList.remove("open");
+    contactModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
 
-    // Close modal when clicking X
-    if (contactClose) {
-        contactClose.addEventListener('click', () => {
-            contactModal.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    }
-
-    // Close modal when clicking outside the content
-    contactModal.addEventListener('click', function(e) {
-        if (e.target === contactModal) {
-            contactModal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Close modal with ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && contactModal.classList.contains('open')) {
-            contactModal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+contactLinks.forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        openContact();
     });
 });
 
-// LAZY LOADING FADE-IN EFFECT
-document.addEventListener('DOMContentLoaded', () => {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+// Close modal when clicking X
+if (contactClose) {
+    contactClose.addEventListener("click", closeContact);
+}
 
-    lazyImages.forEach(img => {
-        img.addEventListener('load', function() {
-            this.classList.add('loaded');
-        });
+// Close modal when clicking outside the content
+if (contactModal) {
+    contactModal.addEventListener("click", e => {
+        if (e.target === contactModal) closeContact();
+    });
+}
 
-        // If image is already cached and loaded
-        if (img.complete) {
-            img.classList.add('loaded');
+// Close modal with ESC key
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape" &&
+        contactModal?.classList.contains("open")) {
+            closeContact();
         }
+});
+
+/* ==========================================================
+   LAZY LOADING FADE-IN EFFECT
+========================================================== */
+const lazyImages = document.querySelectorAll("img[loading='lazy']");
+
+lazyImages.forEach(img => {
+    const fadeIn = () => img.classList.add("loaded");
+    img.addEventListener("load", fadeIn);
+    
+    // If image is already cached and loaded
+    if (img.complete) fadeIn();
+});
+
+/* ==========================================================
+   MOBILE HAMBURGER MENU TOGGLE
+========================================================== */
+const hamburger = document.querySelector(".hamburger");
+const mobileNav = document.getElementById("mobile-nav");
+const mobileNavClose = document.querySelector(".mobile-nav-close");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav-content a");
+
+// Toggle mobile nav open/close
+function openMobileNav() {
+    mobileNav.classList.add("open");
+    mobileNav.setAttribute("aria-hidden", "false");
+    hamburger.classList.add("active");
+    hamburger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+}
+
+function closeMobileNav() {
+    mobileNav.classList.remove("open");
+    mobileNav.setAttribute("aria-hidden", "true");
+    hamburger.classList.remove("active");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+}
+
+if (hamburger && mobileNav) {
+    hamburger.addEventListener("click", () => {
+        mobileNav.classList.contains("open")
+        ? closeMobileNav()
+        : openMobileNav();
+    });
+}
+
+// Close mobile nav with close button
+if (mobileNavClose) mobileNavClose.addEventListener("click", closeMobileNav);
+
+// Close mobile nav when clicking a link inside it
+mobileNavLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        setTimeout(closeMobileNav, 50);
     });
 });
 
-// MOBILE HAMBURGER MENU TOGGLE
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.querySelector('.mobile-nav-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-content a');
-
-    if (!hamburger || !mobileNav) return;
-
-    // Toggle mobile nav open/close
-    function openMobileNav() {
-        mobileNav.classList.add('open');
-        hamburger.classList.add('active');
-        hamburger.setAttribute('aria-expanded', 'true');
-        mobileNav.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+// Close mobile nav with ESC key
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && mobileNav?.classList.contains("open")) {
+        closeMobileNav();
     }
-
-    function closeMobileNav() {
-        mobileNav.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    hamburger.addEventListener('click', () => {
-        if (mobileNav.classList.contains('open')) {
-            closeMobileNav();
-        } else {
-            openMobileNav();
-        }
-    });
-
-    // Close mobile nav with close button
-    if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', closeMobileNav);
-    }
-
-    // Close mobile nav when clicking a link inside it
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // let contact link behavior run (contact modal) then close nav
-            setTimeout(closeMobileNav, 50);
-        });
-    });
-
-    // Close mobile nav with ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-            closeMobileNav();
-        }
-    });
+});
 });

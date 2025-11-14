@@ -170,7 +170,7 @@ body {
 }
 
 /* Fade in effect when image loads */
-.gallery-time img[loading="lazy"] {
+.gallery-item img[loading="lazy"] {
     opacity: 0;
 }
 
