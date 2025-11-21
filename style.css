@@ -238,9 +238,9 @@ body {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: 1fr; /* 1 column on mobile */
-    grid-auto-rows: 250px;
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 1 column on mobile */
+    grid-auto-rows: 200px;
+    gap: 10px;
 }
 
 .gallery-item {
@@ -560,6 +560,7 @@ body {
         padding: 32px 22px;
     }
 }
+
 
 /* Tablet and up (768px+) */
 @media (min-width: 768px) {
