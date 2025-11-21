@@ -178,6 +178,11 @@ body {
     display: block;
     width: 100%;
     height: 100%;
+    position: relative;
+}
+
+.hero-image-link img {
+    pointer-events: none; 
 }
 
 .right-side img {
@@ -185,11 +190,13 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36,1);
 }
 
+/* Hero zoom in + smooth ease back */
 .right-side img:hover {
-    transform: scale(1.03);
+    transform: scale(1.07);
+    transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* =========================================
@@ -247,7 +254,7 @@ body {
 }
 
 .gallery-item:hover img {
-    transfrom: scale(1.03);
+    transform: scale(1.03);
     filter: brightness(1.05);
 }
 
@@ -611,19 +618,7 @@ body {
     }
 }
 
-/* =========================================
-   DISABLE RIGHT-CLICK ON HERO IMAGE
-   By placing a transparent layer over the image, 
-   so the user can’t right-click or drag it.
-========================================= */
-.hero-image-link {
-    position: relative;
-}
-
-.hero-image-link::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    cursor: default;
+/* correct the hero image hover effect */ 
+.hero-image-link img {
+    pointer-events: none;
 }
