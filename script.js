@@ -80,8 +80,6 @@ if (lightboxImg) {
 }
 
 // SWIPE NAVIGATION FOR LIGHTBOX (MOBILE)
-if (!lightbox) return;
-
 let startX = 0;
 let endX = 0;
 
@@ -89,7 +87,7 @@ function handleSwipe() {
     const distance = endX - startX;
 
     // Minimum swipe distance
-    if (Math,abs(distance) < 50) return;
+    if (Math.abs(distance) < 50) return;
 
     if (distance < 0) {
         // swipe left -> next image
@@ -103,6 +101,7 @@ function handleSwipe() {
     }
 }
 
+if (lightbox) {
 lightbox.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
 });
@@ -111,6 +110,7 @@ lightbox.addEventListener("touchend", (e) => {
     endX = e.changedTouches[0].clientX;
     handleSwipe();
 });
+}
 
 /* ==========================================================
    CONTACT MODAL
