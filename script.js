@@ -79,6 +79,38 @@ if (lightboxImg) {
     lightboxImg.addEventListener("contextmenu", e => e.preventDefault());
 }
 
+// SWIPE NAVIGATION FOR LIGHTBOX (MOBILE)
+if (!lightbox) return;
+
+let startX = 0;
+let endX = 0;
+
+function handleSwipe() {
+    const distance = endX - startX;
+
+    // Minimum swipe distance
+    if (Math,abs(distance) < 50) return;
+
+    if (distance < 0) {
+        // swipe left -> next image
+        const next = (currentIndex + 1) % images.length;
+        showImageAt(next);
+    } 
+    else {
+        // swipe right -> previous image
+        const prev = (currentIndex - 1 + images.length) % images.length;
+        showImageAt(prev);
+    }
+}
+
+lightbox.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
 
 /* ==========================================================
    CONTACT MODAL
