@@ -39,7 +39,6 @@ body {
 
 /* =========================================
    MOBILE HEADER & NAV
-   (mobile-first: visible by default)
 ========================================= */
 
 .mobile-header {
@@ -49,6 +48,7 @@ body {
     background-color: var(--bg-grey);
     width: 100%;
     z-index: 900;
+    flex-shrink: 0;
 }
 
 .hamburger {
@@ -201,7 +201,7 @@ body {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     background-color: #000000;
     transition:
         transform 0.5s ease,
@@ -606,4 +606,35 @@ body {
 .hero-image-link img:hover {
     transform: scale(1.07);
     transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* =========================================
+   MOBILE FIX - HERO IMAGE SHOULD NOT CROP
+========================================= */
+@media (max-width: 768px) {
+    .split-container {
+        min-height: 100vh;
+        height: 100vh;
+        display: block;
+    }
+
+    .right-side {
+        height: 100vh;
+        width: 100%;
+        overflow:hidden;
+        position: relative;
+    }
+
+    .hero-image-link,
+    .hero-image-link img {
+        width: 100%;
+        height: 100vh;
+        display: block;
+    }
+
+    /* IGNORE aspect ration and fill screen */
+    .hero-image-link img {
+        object-fit: cover;
+        object-position: center;
+    }
 }
