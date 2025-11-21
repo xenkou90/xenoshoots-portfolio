@@ -193,3 +193,14 @@ document.addEventListener("keydown", e => {
     }
 });
 });
+
+// Disable right-click on hero image only
+document.addEventListener("DOMContentLoaded", () => {
+    const protectedElements = document.querySelectorAll('.protect');
+
+    protectedElements.forEach(el => {
+        el.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
+    });
+});
